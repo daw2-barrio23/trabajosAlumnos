@@ -13,3 +13,11 @@ Utilizaremos un prozadimiento basado en agile y skrull
 1. crearemos las historias
 2. dividiremos las historias en tareas
 3. agruparemos las historias en sprints
+
+## Recursos
+
+(http://josema966.gitlab.io/chuleta-markdown.html)
+`npm i bootstrap`
+```
+console.log('hola')
+```
