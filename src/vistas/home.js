@@ -1,3 +1,3 @@
 export const home = {
-    templeate: `<h1>Home</h1>`
+  templeate: '<h1>Home</h1>'
 }
