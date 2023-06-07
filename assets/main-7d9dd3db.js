@@ -5109,8 +5109,8 @@ const footer = {
   templeate: `<h1>Footer</h1>`
 };
 const scriptRel = "modulepreload";
-const assetsURL = function(dep) {
-  return "/" + dep;
+const assetsURL = function(dep, importerUrl) {
+  return new URL(dep, importerUrl).href;
 };
 const seen = {};
 const __vitePreload = function preload(baseModule, deps, importerUrl) {
@@ -5119,7 +5119,7 @@ const __vitePreload = function preload(baseModule, deps, importerUrl) {
   }
   const links = document.getElementsByTagName("link");
   return Promise.all(deps.map((dep) => {
-    dep = assetsURL(dep);
+    dep = assetsURL(dep, importerUrl);
     if (dep in seen)
       return;
     seen[dep] = true;
@@ -5185,7 +5185,7 @@ const resolveFetch$3 = (customFetch) => {
     _fetch = customFetch;
   } else if (typeof fetch === "undefined") {
     _fetch = (...args) => __awaiter$d(void 0, void 0, void 0, function* () {
-      return yield (yield __vitePreload(() => Promise.resolve().then(() => browserPonyfill), true ? void 0 : void 0)).fetch(...args);
+      return yield (yield __vitePreload(() => Promise.resolve().then(() => browserPonyfill), true ? void 0 : void 0, import.meta.url)).fetch(...args);
     });
   } else {
     _fetch = fetch;
@@ -8302,7 +8302,7 @@ const resolveFetch$2 = (customFetch) => {
     _fetch = customFetch;
   } else if (typeof fetch === "undefined") {
     _fetch = (...args) => __awaiter$9(void 0, void 0, void 0, function* () {
-      return yield (yield __vitePreload(() => Promise.resolve().then(() => browserPonyfill), true ? void 0 : void 0)).fetch(...args);
+      return yield (yield __vitePreload(() => Promise.resolve().then(() => browserPonyfill), true ? void 0 : void 0, import.meta.url)).fetch(...args);
     });
   } else {
     _fetch = fetch;
@@ -8311,7 +8311,7 @@ const resolveFetch$2 = (customFetch) => {
 };
 const resolveResponse = () => __awaiter$9(void 0, void 0, void 0, function* () {
   if (typeof Response === "undefined") {
-    return (yield __vitePreload(() => Promise.resolve().then(() => browserPonyfill), true ? void 0 : void 0)).Response;
+    return (yield __vitePreload(() => Promise.resolve().then(() => browserPonyfill), true ? void 0 : void 0, import.meta.url)).Response;
   }
   return Response;
 });
@@ -9098,7 +9098,7 @@ const resolveFetch = (customFetch) => {
     _fetch = customFetch;
   } else if (typeof fetch === "undefined") {
     _fetch = (...args) => __awaiter$4(void 0, void 0, void 0, function* () {
-      return yield (yield __vitePreload(() => Promise.resolve().then(() => browserPonyfill), true ? void 0 : void 0)).fetch(...args);
+      return yield (yield __vitePreload(() => Promise.resolve().then(() => browserPonyfill), true ? void 0 : void 0, import.meta.url)).fetch(...args);
     });
   } else {
     _fetch = fetch;
